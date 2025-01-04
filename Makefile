@@ -1,9 +1,9 @@
 # Makefile for minimal-composerize
 
 # Variables
-BUILD_NAME = composerize-minimal-composerize
 IMAGE_NAME = oaklight/composerize
 IMAGE_TAG = latest
+PLATFORMS = linux/amd64,linux/arm64,linux/arm/v7
 
 # Default target
 all: build
@@ -12,22 +12,34 @@ all: build
 pull-submodules:
 	git submodule update --init --recursive --remote
 
-# Build the Docker image
+# Build the Docker image for multiple architectures and push to Docker Hub
 build: pull-submodules
-	docker compose -f compose.dev.yaml build
+	@echo "Building Docker image for platforms: $(PLATFORMS)"
+	-docker buildx rm multiarch-builder 2>/dev/null || true
+	docker buildx create --use --name multiarch-builder || true
+	docker buildx build --platform $(PLATFORMS) -t $(IMAGE_NAME):$(IMAGE_TAG) --push .
 
-# Push the Docker image to Docker Hub
-push: build
-	docker tag $(BUILD_NAME) $(IMAGE_NAME):$(IMAGE_TAG)
-	docker push $(IMAGE_NAME):$(IMAGE_TAG)
+# Build the Docker image for the local architecture (development)
+build-local: pull-submodules
+	@echo "Building Docker image for local architecture"
+	docker build -t $(IMAGE_NAME):$(IMAGE_TAG) .
 
-# Clean up unused Docker resources
+# Clean up unused Docker resources and buildx builder
 clean:
+	@echo "Cleaning up unused Docker resources and buildx builder"
 	docker system prune -f
+	docker buildx rm multiarch-builder || true
 
-# Run the Docker container
-run: build
-	docker compose -f compose.dev.yaml up
+# Run the Docker container (local development)
+run: build-local
+	@echo "Running Docker container locally"
+	docker run -d -p 8080:80 --name composerize $(IMAGE_NAME):$(IMAGE_TAG)
+
+# Stop the Docker container (local development)
+stop:
+	@echo "Stopping Docker container"
+	-docker stop composerize
+	-docker rm composerize
 
 # Help message
 help:
@@ -35,10 +47,11 @@ help:
 	@echo ""
 	@echo "Targets:"
 	@echo "  pull-submodules  Pull the latest submodules"
-	@echo "  build            Build the Docker image"
-	@echo "  push             Push the Docker image to Docker Hub"
-	@echo "  clean            Clean up unused Docker resources"
-	@echo "  run              Run the Docker container"
+	@echo "  build            Build the Docker image for multiple architectures and push to Docker Hub"
+	@echo "  build-local      Build the Docker image for the local architecture (development)"
+	@echo "  clean            Clean up unused Docker resources and buildx builder"
+	@echo "  run              Run the Docker container locally (development)"
+	@echo "  stop             Stop the Docker container (development)"
 	@echo "  help             Show this help message"
 
-.PHONY: all pull-submodules build push clean run help
+.PHONY: all pull-submodules build build-local clean run stop help

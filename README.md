@@ -15,7 +15,6 @@
 ```
 $ tree -L 2 .
 .
-├── build.sh
 ├── compose.dev.yaml
 ├── compose.yaml
 ├── Dockerfile
@@ -26,7 +25,7 @@ $ tree -L 2 .
     ├── composeverter
     └── decomposerize
 
-4 个目录，6 个文件
+4 个目录，5 个文件
 ```
 
 ## 生产环境 Docker Compose
@@ -45,12 +44,6 @@ docker compose -f compose.yaml up
 ## 自定义 / 本地构建
 
 要对 Docker 镜像或静态网站进行自定义修改，请修改 `Dockerfile` 或相应的子模块（ `composerize` 、 `decomposerize` 、 `composeverter` ）。然后使用以下命令构建：
-
-```bash
-./build.sh
-```
-
-或
 
 ```bash
 make build
