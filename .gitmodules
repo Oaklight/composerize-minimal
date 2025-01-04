@@ -1,0 +1,9 @@
+[submodule "submodules/composerize"]
+	path = submodules/composerize
+	url = https://github.com/composerize/composerize.git
+[submodule "submodules/decomposerize"]
+	path = submodules/decomposerize
+	url = https://github.com/composerize/decomposerize.git
+[submodule "submodules/composeverter"]
+	path = submodules/composeverter
+	url = https://github.com/outilslibre/composeverter.git
