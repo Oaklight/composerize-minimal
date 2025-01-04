@@ -1,0 +1,5 @@
+services:
+  composerize:
+    image: oaklight/composerize:latest
+    ports:
+      - "8080:80"
