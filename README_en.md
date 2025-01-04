@@ -6,7 +6,7 @@ This project provides a minimal Docker image for serving the [ `composerize` ](h
 
 ## Features
 
-* **Multi-stage build**: Separately builds the static websites for `composerize`,            `decomposerize`, and `composeverter`.
+* **Multi-stage build**: Separately builds the static websites for `composerize`,                `decomposerize`, and `composeverter`.
 * **Minimal image size**: Uses `lipanski/docker-static-website` as the final base image, resulting in an image size of just **~7MB** (including the size of the static files).
 * **Easy to use**: Automates the build process using the provided `Makefile` or `build.sh` script.
 
@@ -63,4 +63,4 @@ This project is inspired by:
 * [lipanski.com - Smallest Docker Image for a Static Website](https://lipanski.com/posts/smallest-docker-image-static-website)
 
 Special thanks to:
-* **sharevb** for creating and maintaining the repositories for  [composerize/composerize](https://github.com/composerize/composerize).
+* [**sharevb**](https://github.com/sharevb) for maintaining the repositories for [composerize/composerize](https://github.com/composerize/composerize).

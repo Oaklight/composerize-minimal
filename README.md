@@ -63,4 +63,4 @@ make build
 * [lipanski.com - 最小的静态网站 Docker 镜像](https://lipanski.com/posts/smallest-docker-image-static-website)
 
 特别感谢：
-* **sharevb** 创建并维护了 [composerize/composerize](https://github.com/composerize/composerize) 仓库。
+* [**sharevb**](https://github.com/sharevb) 持续维护 [composerize/composerize](https://github.com/composerize/composerize) 仓库！
