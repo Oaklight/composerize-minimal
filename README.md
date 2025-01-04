@@ -9,6 +9,7 @@
 * **多阶段构建**：分别构建 `composerize`、`decomposerize` 和 `composeverter` 的静态网站。
 * **最小化镜像体积**：使用 `lipanski/docker-static-website` 作为最终的基础镜像，生成的镜像体积仅为 **~7MB**（包括静态文件的大小）。
 * **易于使用**：通过提供的 `Makefile` 或 `build.sh` 脚本自动完成构建过程。
+* **Multi-arch support**: 现已支持`linux/amd64`, `linux/arm64/v8`, and `linux/arm/v7`的docker镜像。
 
 ## 仓库结构
 
