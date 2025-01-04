@@ -9,6 +9,8 @@ This project provides a minimal Docker image for serving the [ `composerize` ](h
 * **Multi-stage build**: Separately builds the static websites for `composerize`,                  `decomposerize`, and `composeverter`.
 * **Minimal image size**: Uses `lipanski/docker-static-website` as the final base image, resulting in an image size of just **~7MB** (including the size of the static files).
 * **Easy to use**: Automates the build process using the provided `Makefile` or `build.sh` script.
+* **Multi-arch support**: now supporting `linux/amd64`, `linux/arm64/v8`, and `linux/arm/v7` docker images.
+
 
 ## Repository Structure
 
