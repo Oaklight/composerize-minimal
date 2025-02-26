@@ -47,7 +47,7 @@ RUN sed -i "s,https://www.composeverter.com,/composeverter,g" package.json && \
     make build
 
 # Stage 4: Final minimal multi-architecture image with lipanski/docker-static-website
-FROM --platform=$BUILDPLATFORM lipanski/docker-static-website:latest
+FROM lipanski/docker-static-website:latest
 
 # Copy built static files from previous stages
 COPY --from=composerize /opt/composerize/packages/composerize-website/build/ /var/www/
