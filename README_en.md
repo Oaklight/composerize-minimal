@@ -1,6 +1,6 @@
 # Minimal Composerize Docker Image
 
-[中文版](./README.md)
+[中文版](./README_zh.md)
 
 This project provides a minimal Docker image for serving the [ `composerize` ](https://www.composerize.com/) 、 [ `decomposerize` ](https://www.decomposerize.com/) and [ `composeverter` ](https://www.composeverter.com/) websites. The image is built using a multi-stage Docker build process and leverages the smallest possible base image for serving static files.
 
