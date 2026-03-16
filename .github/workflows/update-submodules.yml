@@ -1,0 +1,56 @@
+name: Update Submodules
+
+on:
+  schedule:
+    - cron: "17 3 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write
+
+jobs:
+  update-submodules:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      - name: Configure git user
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Update submodules to latest remote
+        run: git submodule update --init --recursive --remote
+
+      - name: Check for changes
+        id: check
+        run: |
+          if git diff --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "Submodules are already up to date."
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            echo "Submodule changes detected."
+          fi
+
+      - name: Commit and push updated submodule refs
+        if: steps.check.outputs.changed == 'true'
+        run: |
+          git add -A
+          git commit -m "🔧 chore(submodules): update submodule references"
+          git push
+
+      - name: Trigger Docker build workflow
+        if: steps.check.outputs.changed == 'true'
+        run: |
+          gh workflow run docker-build.yml --ref "${{ github.ref }}"
+        env:
+          GH_TOKEN: ${{ github.token }}
+
+      - name: Skip build (no changes)
+        if: steps.check.outputs.changed == 'false'
+        run: echo "No submodule changes — skipping Docker build."
