@@ -1,5 +1,5 @@
 # Stage 1: Build composerize
-FROM --platform=linux/amd64 node:current-alpine3.21 AS composerize
+FROM --platform=$BUILDPLATFORM node:current-alpine3.21 AS composerize
 RUN apk add --update --no-cache npm git make jq bash tini && \
     rm -rf /var/cache/apk/* && \
     mkdir -p /opt/composerize
@@ -15,7 +15,7 @@ RUN sed -i "s,https://www.composerize.com,/,g" package.json && \
     make build
 
 # Stage 2: Build decomposerize
-FROM --platform=linux/amd64 node:current-alpine3.21 AS decomposerize
+FROM --platform=$BUILDPLATFORM node:current-alpine3.21 AS decomposerize
 RUN apk add --update --no-cache npm git make jq bash tini && \
     rm -rf /var/cache/apk/* && \
     mkdir -p /opt/decomposerize
@@ -31,7 +31,7 @@ RUN sed -i "s,https://www.decomposerize.com,/decomposerize,g" package.json && \
     make build
 
 # Stage 3: Build composeverter
-FROM --platform=linux/amd64 node:current-alpine3.21 AS composeverter
+FROM --platform=$BUILDPLATFORM node:current-alpine3.21 AS composeverter
 RUN apk add --update --no-cache npm git make jq bash tini && \
     rm -rf /var/cache/apk/* && \
     mkdir -p /opt/composeverter
