@@ -2,6 +2,12 @@
 
 [English](./README_en.md)
 
+[![Docker Image](https://img.shields.io/docker/v/oaklight/composerize?label=docker%20image&sort=date)](https://hub.docker.com/r/oaklight/composerize)
+[![Docker Image Size](https://img.shields.io/docker/image-size/oaklight/composerize/latest)](https://hub.docker.com/r/oaklight/composerize)
+[![composerize](https://img.shields.io/github/last-commit/composerize/composerize?label=composerize%20upstream)](https://github.com/composerize/composerize)
+[![decomposerize](https://img.shields.io/github/last-commit/composerize/decomposerize?label=decomposerize%20upstream)](https://github.com/composerize/decomposerize)
+[![composeverter](https://img.shields.io/github/last-commit/outilslibre/composeverter?label=composeverter%20upstream)](https://github.com/outilslibre/composeverter)
+
 该项目提供了一个用于托管 [ `composerize` ](https://www.composerize.com/) 、 [ `decomposerize` ](https://www.decomposerize.com/) 和 [ `composeverter` ](https://www.composeverter.com/) 网站的最小化 Docker 镜像。该镜像通过多阶段 Docker 构建过程构建，并利用最小的基础镜像来提供静态文件服务。
 
 ## 特性

@@ -2,6 +2,12 @@
 
 [中文版](./README_zh.md)
 
+[![Docker Image](https://img.shields.io/docker/v/oaklight/composerize?label=docker%20image&sort=date)](https://hub.docker.com/r/oaklight/composerize)
+[![Docker Image Size](https://img.shields.io/docker/image-size/oaklight/composerize/latest)](https://hub.docker.com/r/oaklight/composerize)
+[![composerize](https://img.shields.io/github/last-commit/composerize/composerize?label=composerize%20upstream)](https://github.com/composerize/composerize)
+[![decomposerize](https://img.shields.io/github/last-commit/composerize/decomposerize?label=decomposerize%20upstream)](https://github.com/composerize/decomposerize)
+[![composeverter](https://img.shields.io/github/last-commit/outilslibre/composeverter?label=composeverter%20upstream)](https://github.com/outilslibre/composeverter)
+
 This project provides a minimal Docker image for serving the [ `composerize` ](https://www.composerize.com/) 、 [ `decomposerize` ](https://www.decomposerize.com/) and [ `composeverter` ](https://www.composeverter.com/) websites. The image is built using a multi-stage Docker build process and leverages the smallest possible base image for serving static files.
 
 ## Features
