@@ -54,8 +54,8 @@ COPY --from=composerize /opt/composerize/packages/composerize-website/build/ /va
 COPY --from=decomposerize /opt/decomposerize/packages/decomposerize-website/build/ /var/www/decomposerize/
 COPY --from=composeverter /opt/composeverter/packages/composeverter-website/build/ /var/www/composeverter/
 
-# Expose port 80
-EXPOSE 80
+# Expose port 3000 (non-privileged, matching base image default)
+EXPOSE 3000
 
 # Start the BusyBox httpd server
-CMD ["/busybox-httpd", "-f", "-v", "-p", "80", "-h", "/var/www"]
+CMD ["/busybox-httpd", "-f", "-v", "-p", "3000", "-h", "/var/www"]

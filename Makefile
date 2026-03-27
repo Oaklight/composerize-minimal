@@ -33,7 +33,7 @@ clean:
 # Run the Docker container (local development)
 run: build-local
 	@echo "Running Docker container locally"
-	docker run -d -p 8080:80 --name composerize $(IMAGE_NAME):$(IMAGE_TAG)
+	docker run -d -p 8080:3000 --name composerize $(IMAGE_NAME):$(IMAGE_TAG)
 
 # Stop the Docker container (local development)
 stop:
